@@ -52,9 +52,7 @@ try:
     st.success("Connected to InsightWatch PostgreSQL database.")
 
 
-    # -------------------------
     # KPI calculations
-    # -------------------------
 
     total_revenue = df["revenue"].sum()
     total_orders = df["orders"].sum()
@@ -62,9 +60,7 @@ try:
     total_return_value = df["return_value"].sum()
 
 
-    # -------------------------
     # KPI cards
-    # -------------------------
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -96,9 +92,7 @@ try:
     st.divider()
 
 
-    # -------------------------
     # Revenue trend
-    # -------------------------
 
     st.subheader("Daily Revenue Trend")
 
@@ -112,9 +106,7 @@ try:
     st.divider()
 
 
-    # -------------------------
     # Anomaly table
-    # -------------------------
 
     st.subheader("Detected Anomalies")
 
