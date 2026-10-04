@@ -166,7 +166,24 @@ The stored data is connected to Power BI to provide:
 
 The final Power BI report is available in [`dashboard/InsightWatch.pbix`](dashboard/InsightWatch.pbix).
 
-### 7. Automated Alerts
+
+### 7. Streamlit Interactive Demo
+
+A lightweight Streamlit application provides an interactive interface for investigating detected anomalies.
+
+The application reads the processed results directly from PostgreSQL and provides:
+
+- KPI overview
+- Daily revenue and baseline trend
+- Anomaly table
+- Interactive anomaly selection
+- Supporting business metrics
+- AI-assisted anomaly explanations
+- Suggested investigation areas
+
+The Streamlit application is intended as an interactive project demonstration rather than a replacement for the Power BI dashboard.
+
+### 8. Automated Alerts
 
 When a new anomaly is detected, the pipeline can create an email notification containing the anomaly's key business metrics and AI-generated context.
 
@@ -197,6 +214,7 @@ The AI insight count is lower than the anomaly count because the project was dev
 InsightWatch/
 │
 ├── README.md
+├── app.py
 ├── requirements.txt
 ├── LICENSE
 │
@@ -214,6 +232,11 @@ InsightWatch/
 │
 ├── docs/
 │   └── architecture.md
+│
+├── screenshots/
+│   ├── dashboard-overview.png
+│   ├── anomaly-investigation.png
+│   └── email-alert.png
 │
 └── dashboard/
     ├── README.md
@@ -251,6 +274,17 @@ Contains the finalized end-to-end pipeline:
 - Final verification
 
 ---
+
+
+### Streamlit Application
+
+The deployed Streamlit application reads the processed results from PostgreSQL.
+
+The application requires the `NEON_DATABASE_URL` connection string to be configured as a Streamlit secret.
+
+The public demo does not require the database credentials to be exposed in the repository.
+
+
 
 ## Running the Project
 
@@ -304,6 +338,7 @@ and then run:
 - AI-generated insights are available for 20 of the 33 detected anomalies because of API free-tier limitations during development.
 - Email alerting was demonstrated using the historical dataset rather than a continuously running production service.
 - The final day in the dataset is a partial day and is treated accordingly.
+- The Streamlit application reads preprocessed historical results from PostgreSQL and does not perform live data ingestion or real-time anomaly detection.
 
 InsightWatch is therefore best viewed as an **end-to-end analytics and monitoring prototype**, rather than a production monitoring platform.
 
@@ -321,7 +356,7 @@ LLM-based structured business insight generation · Pydantic
 PostgreSQL · Neon
 
 **Visualization**  
-Power BI
+Power BI · Streamlit
 
 **Automation**  
 Gmail SMTP
@@ -338,3 +373,7 @@ UCI Machine Learning Repository
 - [SQL Schema](sql/schema.sql)
 - [Analytical Queries](sql/analysis.sql)
 - [Power BI Dashboard](dashboard/README.md)
+
+## Live Demo
+
+[🚀 Open InsightWatch](https://insight-watch.streamlit.app/)
