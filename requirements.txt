@@ -6,3 +6,4 @@ seaborn
 psycopg[binary]
 google-genai
 pydantic
+streamlit
