@@ -51,18 +51,70 @@ try:
 
     st.success("Connected to InsightWatch PostgreSQL database.")
 
-    col1, col2 = st.columns(2)
+
+    # -------------------------
+    # KPI calculations
+    # -------------------------
+
+    total_revenue = df["revenue"].sum()
+    total_orders = df["orders"].sum()
+    anomaly_count = int(df["revenue_anomaly"].sum())
+    total_return_value = df["return_value"].sum()
+
+
+    # -------------------------
+    # KPI cards
+    # -------------------------
+
+    col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.metric("Daily Records", len(df))
+        st.metric(
+            "Total Revenue",
+            f"£{total_revenue:,.0f}"
+        )
 
     with col2:
         st.metric(
-            "Detected Anomalies",
-            int(df["revenue_anomaly"].sum())
+            "Total Orders",
+            f"{total_orders:,.0f}"
         )
 
+    with col3:
+        st.metric(
+            "Detected Anomalies",
+            anomaly_count
+        )
+
+    with col4:
+        st.metric(
+            "Return Value",
+            f"£{total_return_value:,.0f}"
+        )
+
+
     st.divider()
+
+
+    # -------------------------
+    # Revenue trend
+    # -------------------------
+
+    st.subheader("Daily Revenue Trend")
+
+    chart_data = df.set_index("metric_date")[
+        ["revenue", "baseline_revenue"]
+    ]
+
+    st.line_chart(chart_data)
+
+
+    st.divider()
+
+
+    # -------------------------
+    # Anomaly table
+    # -------------------------
 
     st.subheader("Detected Anomalies")
 
@@ -83,6 +135,7 @@ try:
         use_container_width=True,
         hide_index=True
     )
+
 
 except Exception as e:
     st.error("Could not load InsightWatch data.")
