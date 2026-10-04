@@ -49,6 +49,9 @@ try:
 
     conn.close()
 
+
+    # Connection status
+
     st.success("Connected to InsightWatch PostgreSQL database.")
 
 
@@ -92,7 +95,9 @@ try:
     st.divider()
 
 
+    # -------------------------
     # Revenue trend
+    # -------------------------
 
     st.subheader("Daily Revenue Trend")
 
@@ -106,7 +111,9 @@ try:
     st.divider()
 
 
+    # -------------------------
     # Anomaly table
+    # -------------------------
 
     st.subheader("Detected Anomalies")
 
@@ -127,6 +134,116 @@ try:
         use_container_width=True,
         hide_index=True
     )
+
+
+    st.divider()
+
+
+    # -------------------------
+    # Anomaly investigation
+    # -------------------------
+
+    st.subheader("Anomaly Investigation")
+
+    selected_date = st.selectbox(
+        "Select an anomaly date",
+        anomalies["metric_date"].tolist()
+    )
+
+    selected = anomalies[
+        anomalies["metric_date"] == selected_date
+    ].iloc[0]
+
+
+    # Anomaly overview
+
+    st.markdown(
+        f"### {selected_date} — "
+        f"{selected['severity']} {selected['anomaly_direction']} Anomaly"
+    )
+
+
+    # Main metrics
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric(
+            "Revenue",
+            f"£{selected['revenue']:,.2f}"
+        )
+
+    with col2:
+        st.metric(
+            "Baseline Revenue",
+            f"£{selected['baseline_revenue']:,.2f}"
+        )
+
+    with col3:
+        st.metric(
+            "Revenue Deviation",
+            f"{selected['revenue_deviation_pct']:.2f}%"
+        )
+
+    with col4:
+        st.metric(
+            "Z-Score",
+            f"{selected['revenue_zscore']:.2f}"
+        )
+
+
+    # Supporting metrics
+
+    st.markdown("#### Supporting Metrics")
+
+    col1, col2, col3, col4, col5 = st.columns(5)
+
+    with col1:
+        st.metric("Orders", f"{selected['orders']:,}")
+
+    with col2:
+        st.metric("Customers", f"{selected['customers']:,}")
+
+    with col3:
+        st.metric("Units Sold", f"{selected['units_sold']:,}")
+
+    with col4:
+        st.metric("AOV", f"£{selected['aov']:,.2f}")
+
+    with col5:
+        st.metric(
+            "Return Value",
+            f"£{selected['return_value']:,.2f}"
+        )
+
+
+    # AI-generated insight
+
+    st.markdown("#### AI-Assisted Insight")
+
+    st.markdown(
+        f"**Primary Driver:** {selected['primary_driver']}"
+    )
+
+    st.write(selected["summary"])
+
+
+    st.markdown(
+        f"**Return Signal:** {selected['return_signal']}"
+    )
+
+
+    # Investigations
+
+    st.markdown("#### Suggested Investigations")
+
+    investigations = selected["investigations"]
+
+    if isinstance(investigations, list):
+        for item in investigations:
+            st.write(f"• {item}")
+    else:
+        st.write(investigations)
 
 
 except Exception as e:
