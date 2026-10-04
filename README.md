@@ -2,6 +2,8 @@
 
 ### Automated Business Anomaly Detection & Intelligence System
 
+[Live Demo](https://insight-watch.streamlit.app/)
+
 InsightWatch is an end-to-end analytics project that detects unusual business performance from transaction data, explains the anomalies using AI-assisted analysis, stores the results in PostgreSQL, visualizes them in Power BI, and triggers email alerts.
 
 The project was built around a simple question:
