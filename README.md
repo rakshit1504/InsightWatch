@@ -27,9 +27,13 @@ AI-Assisted Business Insights
         ↓
 PostgreSQL
         ↓
-Power BI Dashboard
-        +
+   ┌────┴────┐
+   ↓         ↓
+Power BI   Streamlit
+Dashboard   Demo
+   ↓
 Email Alerts
+
 ```
 
 The system analyzes daily revenue, orders, customers, units sold, average order value, returns and cancellations to identify unusual revenue movements.
