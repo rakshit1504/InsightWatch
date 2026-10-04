@@ -38,15 +38,15 @@ The system analyzes daily revenue, orders, customers, units sold, average order 
 
 ### Business Overview
 
-![InsightWatch Dashboard](docs/screenshots/dashboard-overview.png)
+![InsightWatch Dashboard](screenshots/dashboard-overview.png)
 
 ### Anomaly Investigation
 
-![Anomaly Investigation](docs/screenshots/anomaly-investigation.png)
+![Anomaly Investigation](screenshots/anomaly-investigation.png)
 
 ### Automated Email Alert
 
-![Email Alert](docs/screenshots/email-alert.png)
+![Email Alert](screenshots/email-alert.png)
 
 
 ## Dataset
