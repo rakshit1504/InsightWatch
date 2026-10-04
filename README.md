@@ -34,6 +34,21 @@ The system analyzes daily revenue, orders, customers, units sold, average order 
 
 ---
 
+## Dashboard
+
+### Business Overview
+
+![InsightWatch Dashboard](docs/screenshots/dashboard-overview.png)
+
+### Anomaly Investigation
+
+![Anomaly Investigation](docs/screenshots/anomaly-investigation.png)
+
+### Automated Email Alert
+
+![Email Alert](docs/screenshots/email-alert.png)
+
+
 ## Dataset
 
 InsightWatch uses the **Online Retail II** dataset from the UCI Machine Learning Repository.
