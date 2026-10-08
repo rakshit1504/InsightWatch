@@ -60,8 +60,11 @@ def load_data():
 
 st.title("InsightWatch")
 
-st.subheader(
-    "Automated Business Anomaly Detection & Intelligence System"
+st.markdown(
+    """
+    **Automated Business Anomaly Detection & Intelligence System**  
+    [View project on GitHub ↗](https://github.com/rakshit1504/InsightWatch)
+    """
 )
 
 st.write(
@@ -354,6 +357,20 @@ try:
         "Online Retail II data. The application reads "
         "preprocessed results from PostgreSQL and does "
         "not represent a live production monitoring system."
+    )
+
+    st.markdown(
+        """
+        <div style="text-align: center; color: #888888; padding-top: 10px;">
+            Built by <strong>Rakshit Bansal</strong> ·
+            <a href="https://github.com/rakshit1504/InsightWatch"
+               target="_blank"
+               style="text-decoration: none;">
+                GitHub ↗
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
 
